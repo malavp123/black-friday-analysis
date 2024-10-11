@@ -1,6 +1,6 @@
 schemaVersion: 3
 meta:
-  sourceVersionId: f94e8b36-8e7a-42c7-9ca9-338904beaaa8 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  sourceVersionId: 8984603b-09a3-44f6-ad5e-156e76852f14 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
   description: null
   projectId: b752968d-f519-48a6-a935-5c666a12c206 # DO NOT CHANGE - Unique ID of the project from which this file was generated
   title: Analyzing Walmart's Black Friday Data
@@ -9,7 +9,8 @@ meta:
   codeLanguage: PYTHON
   status:
     name: In development
-  categories: []
+  categories:
+    - name: Deep dive
   castDecimalsDefault: true
   logicQueryCacheTimeout: null
   publishedQueryCacheTimeout: null
@@ -150,12 +151,101 @@ cells:
             wrapText: null
             displayFormat: null
         columnOrdering: null
-        customColumnOrdering: null
+        customColumnOrdering:
+          - User_ID
+          - Product_ID
+          - Gender
+          - Age
+          - Occupation
+          - City_Category
+          - Stay_In_Current_City_Years
+          - Marital_Status
+          - Product_Category
+          - Purchase
+          - PURCHASE_ID
+          - dimension_marital_status
+          - dimension_occupation
+          - dimension_Product_Category
         pinnedColumns: null
         hiddenColumns: null
         pinIndexColumns: false
         showAggregations: false
         columnAggregations: null
+  - cellType: TEXT
+    cellId: 002fb1e3-fd53-429b-9eb2-296cb057c4b4 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: p
+          children:
+            - code: true
+              text: User_ID
+            - text: ":  Unique Identifier of each buyer."
+        - type: p
+          children:
+            - code: true
+              text: Product_ID
+            - text: ":  Unique Identifier of each product."
+        - type: p
+          children:
+            - code: true
+              text: Gender
+            - text: ":  Gender of the buyer (M/F)."
+        - type: p
+          children:
+            - code: true
+              text: Age
+            - text: ":  Age Group of the buyer. (0-17 / 18-25 / 26-35 / 36-45 / 46 - 55 / 55+)"
+        - type: p
+          children:
+            - code: true
+              text: Occupation
+            - text: ":  Coded identifier of buyer's occupation."
+        - type: p
+          children:
+            - code: true
+              text: City_Category
+            - text: ":  Coded Identifier of buyers."
+        - type: p
+          children:
+            - code: true
+              text: Stay_In_Current_City_Years
+            - text: ":  Number of years the buyer has stayed in the current city."
+        - type: p
+          children:
+            - code: true
+              text: Marital_Status
+            - text: ":   Identifier of each buyer's marital status. (0  - Single, 1 - Married)"
+        - type: p
+          children:
+            - code: true
+              text: Product_Category
+            - text: ":  Identifier of each product's category."
+        - type: p
+          children:
+            - code: true
+              text: Purchase
+            - text: ":  Cost of each product."
+        - type: p
+          children:
+            - code: true
+              text: PURCHASE_ID
+            - text: ":  Unique Identifier of each row. (Calculated field)"
+        - type: p
+          children:
+            - code: true
+              text: dimension_marital_status
+            - text: ":  Same as Marital Status field, converted to dimension from metric(Calculated field)"
+        - type: p
+          children:
+            - code: true
+              text: dimension_occupation
+            - text: ":  Same as Marital Status field, converted to dimension from metric (Calculated field)"
+        - type: p
+          children:
+            - code: true
+              text: dimension_Product_Category
+            - text: ":  Same as Product Category, converted to dimension from metric (Calculated field)"
   - cellType: TEXT
     cellId: d2f7ae12-d1e7-4de9-9bef-a73051a93d02 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -795,7 +885,7 @@ cells:
               title: Product Categories
               dataFrameColumn: dimension_Product_Category
             series:
-              - id: cb4fb836-0e8c-4cc1-8559-6e20274a2cb1
+              - id: cf79ae87-df64-42a5-b221-c1bc52765451
                 type: bar
                 axis:
                   type: number
@@ -804,39 +894,34 @@ cells:
                       style: solid
                     ticks: {}
                     labels: {}
-                  title: Quantities Sold
-                  aggregate: count
+                  title: Total Purchase Amount ($USD)
+                  aggregate: sum
                 dataFrameColumns:
-                  - _HEX_COUNT_STAR_ARG_
+                  - Purchase
                 colorOrder: ascending
                 color:
                   type: static
+                  color: "#4C78A8"
                 opacity:
                   type: static
-                  value: 1
+                  value: 0.85
                 tooltip:
                   type: auto
                 barWidth: 1
                 orientation: vertical
                 layout: stacked
-              - id: cf79ae87-df64-42a5-b221-c1bc52765451
+              - id: 11d5940b-e131-4bfd-93fb-00bab271e88d
+                name: Quantity Sold
                 type: line
                 axis:
                   type: number
                   style:
                     ticks: {}
                     labels: {}
-                  title: Total Purchase Amount ($USD)
-                  aggregate: sum
-                  numberFormat:
-                    format: CURRENCY
-                    currency: USD
-                    columnType: NUMBER
-                    showSeparators: true
-                    numDecimalDigits: 2
-                    abbreviateLargeNumbers: true
+                  title: Quantity Sold
+                  aggregate: count
                 dataFrameColumns:
-                  - Purchase
+                  - _HEX_COUNT_STAR_ARG_
                 colorOrder: ascending
                 color:
                   type: static
@@ -850,15 +935,18 @@ cells:
                 stroke: solid
             dataFrame: walmart_data
             seriesGroups:
-              - - cb4fb836-0e8c-4cc1-8559-6e20274a2cb1
               - - cf79ae87-df64-42a5-b221-c1bc52765451
+              - - 11d5940b-e131-4bfd-93fb-00bab271e88d
         settings:
           legend:
             position: right
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
-      colorMappings: {}
+      colorMappings:
+        A: "#4C78A8"
+        B: "#F58518"
+        C: "#E45756"
       resultVariable: chart_result_4
       outputResult: true
       displayType: CHART
@@ -1360,7 +1448,10 @@ cells:
       height: null
       chartSpec:
         type: layered
-        facet: {}
+        facet:
+          facetHorizontal:
+            type: string
+            dataFrameColumn: City_Category
         layers:
           - id: 85e39d83-d7c5-49aa-b875-437cba7e383c
             xAxis:
@@ -1383,9 +1474,9 @@ cells:
                     ticks: {}
                     labels: {}
                   title: Total Purchase
-                  aggregate: sum
+                  aggregate: distinct
                 dataFrameColumns:
-                  - Purchase
+                  - User_ID
                 colorDataFrameColumn: dimension_marital_status
                 colorOrder: ascending
                 color:
@@ -1416,6 +1507,113 @@ cells:
       displayType: CHART
       displayTableConfig: null
   - cellType: CHARTV2
+    cellId: b190ed90-2a42-4d4b-a984-3b8c8f89ff10 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      height: null
+      chartSpec:
+        type: layered
+        facet: {}
+        layers:
+          - id: 85e39d83-d7c5-49aa-b875-437cba7e383c
+            xAxis:
+              sort: ascending
+              type: string
+              style:
+                grid:
+                  style: solid
+                ticks: {}
+                labels: {}
+              title: City
+              dataFrameColumn: City_Category
+            series:
+              - id: 3749772f-fd82-4ddd-8575-5f4d20e34411
+                type: bar
+                axis:
+                  type: number
+                  style:
+                    grid:
+                      style: solid
+                    ticks: {}
+                    labels: {}
+                  title: Total Purchase
+                  aggregate: sum
+                dataFrameColumns:
+                  - Purchase
+                colorDataFrameColumn: dimension_Product_Category
+                colorOrder: ascending
+                color:
+                  type: series
+                  dataType: number
+                  dataFrameColumn: Product_Category
+                  colorsBySeriesValues:
+                    "1": "#F58518"
+                    "2": "#E45756"
+                    "3": "#72B7B2"
+                    "4": "#4C78A8"
+                    "5": "#54A24B"
+                    "6": "#EECA3B"
+                    "7": "#B279A2"
+                    "8": "#FF9DA6"
+                    "9": "#9D755D"
+                    "10": "#BAB0AC"
+                    "11": "#4C78A8"
+                    "12": "#F58518"
+                    "13": "#E45756"
+                    "14": "#72B7B2"
+                    "15": "#54A24B"
+                    "16": "#EECA3B"
+                    "17": "#B279A2"
+                    "18": "#FF9DA6"
+                    "19": "#9D755D"
+                    "20": "#BAB0AC"
+                opacity:
+                  type: static
+                  value: 1
+                tooltip:
+                  type: auto
+                barWidth: 1
+                orientation: vertical
+                layout: grouped
+            dataFrame: walmart_data
+        settings:
+          legend:
+            position: bottom
+          tooltip: true
+          selectionEnabled: false
+      chartSelection: {}
+      colorMappings:
+        "0": "#4C78A8"
+        "1": "#F58518"
+        "2": "#E45756"
+        "3": "#72B7B2"
+        "4": "#4C78A8"
+        "5": "#54A24B"
+        "6": "#EECA3B"
+        "7": "#B279A2"
+        "8": "#FF9DA6"
+        "9": "#9D755D"
+        "10": "#BAB0AC"
+        "11": "#4C78A8"
+        "12": "#F58518"
+        "13": "#E45756"
+        "14": "#72B7B2"
+        "15": "#54A24B"
+        "16": "#EECA3B"
+        "17": "#B279A2"
+        "18": "#FF9DA6"
+        "19": "#9D755D"
+        "20": "#BAB0AC"
+        F: "#4C78A8"
+        M: "#F58518"
+        4+: "#54A24B"
+        single: "#F58518"
+        married: "#4C78A8"
+      resultVariable: chart_result_13
+      outputResult: false
+      displayType: CHART
+      displayTableConfig: null
+  - cellType: CHARTV2
     cellId: 19ef0e84-21ee-4120-ab96-e2a1f2b3ab97 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
     config:
@@ -1425,7 +1623,7 @@ cells:
         facet:
           facetHorizontal:
             type: string
-            dataFrameColumn: City_Category
+            dataFrameColumn: dimension_marital_status
         layers:
           - id: 85e39d83-d7c5-49aa-b875-437cba7e383c
             xAxis:
@@ -1446,32 +1644,26 @@ cells:
                       style: solid
                     ticks: {}
                     labels: {}
-                  title: Total Purchase
+                  title: Distinct count of Users
                   aggregate: sum
-                  numberFormat:
-                    format: CURRENCY
-                    currency: USD
-                    columnType: NUMBER
-                    showSeparators: true
-                    numDecimalDigits: 2
-                    abbreviateLargeNumbers: true
                 dataFrameColumns:
                   - Purchase
-                colorDataFrameColumn: dimension_marital_status
+                colorDataFrameColumn: Gender
                 colorOrder: ascending
                 color:
                   type: series
                   dataType: number
-                  colorsBySeriesValues: {}
+                  colorsBySeriesValues:
+                    F: "#FF9DA6"
+                    M: "#4C78A8"
                 opacity:
                   type: static
                   value: 1
                 tooltip:
                   type: auto
-                legendTitle: Marital Status
                 barWidth: 1
                 orientation: vertical
-                layout: stacked
+                layout: grouped
             dataFrame: walmart_data
         settings:
           legend:
@@ -1587,10 +1779,7 @@ cells:
       height: null
       chartSpec:
         type: layered
-        facet:
-          facetHorizontal:
-            type: string
-            dataFrameColumn: City_Category
+        facet: {}
         layers:
           - id: 7824de9e-a225-4818-8b7b-64915915fa70
             xAxis:
@@ -1601,7 +1790,7 @@ cells:
                 ticks: {}
                 labels: {}
               title: City
-              dataFrameColumn: Gender
+              dataFrameColumn: City_Category
             series:
               - id: 9ee9b091-69a8-43f6-8cb1-b0ea1412e959
                 type: bar
@@ -1664,10 +1853,7 @@ cells:
       height: null
       chartSpec:
         type: layered
-        facet:
-          facetHorizontal:
-            type: string
-            dataFrameColumn: City_Category
+        facet: {}
         layers:
           - id: 7824de9e-a225-4818-8b7b-64915915fa70
             xAxis:
@@ -1678,7 +1864,7 @@ cells:
                 ticks: {}
                 labels: {}
               title: City
-              dataFrameColumn: Gender
+              dataFrameColumn: City_Category
             series:
               - id: 9ee9b091-69a8-43f6-8cb1-b0ea1412e959
                 type: bar
@@ -1693,11 +1879,31 @@ cells:
                   aggregate: sum
                 dataFrameColumns:
                   - Purchase
-                colorDataFrameColumn: Age
-                colorOrder: ascending
+                colorDataFrameColumn: dimension_Product_Category
+                colorOrder: y
                 color:
                   type: series
-                  colorsBySeriesValues: {}
+                  colorsBySeriesValues:
+                    "1": "#4C78A8"
+                    "2": "#F58518"
+                    "3": "#E45756"
+                    "4": "#72B7B2"
+                    "5": "#54A24B"
+                    "6": "#EECA3B"
+                    "7": "#B279A2"
+                    "8": "#FF9DA6"
+                    "9": "#9D755D"
+                    "10": "#BAB0AC"
+                    "11": "#4C78A8"
+                    "12": "#F58518"
+                    "13": "#E45756"
+                    "14": "#72B7B2"
+                    "15": "#54A24B"
+                    "16": "#EECA3B"
+                    "17": "#B279A2"
+                    "18": "#FF9DA6"
+                    "19": "#9D755D"
+                    "20": "#BAB0AC"
                 opacity:
                   type: static
                   value: 1
@@ -1714,6 +1920,26 @@ cells:
           selectionEnabled: false
       chartSelection: {}
       colorMappings:
+        "1": "#4C78A8"
+        "2": "#F58518"
+        "3": "#E45756"
+        "4": "#72B7B2"
+        "5": "#54A24B"
+        "6": "#EECA3B"
+        "7": "#B279A2"
+        "8": "#FF9DA6"
+        "9": "#9D755D"
+        "10": "#BAB0AC"
+        "11": "#4C78A8"
+        "12": "#F58518"
+        "13": "#E45756"
+        "14": "#72B7B2"
+        "15": "#54A24B"
+        "16": "#EECA3B"
+        "17": "#B279A2"
+        "18": "#FF9DA6"
+        "19": "#9D755D"
+        "20": "#BAB0AC"
         55+: "#B279A2"
         0-17: "#4C78A8"
         18-25: "#F58518"
@@ -1722,9 +1948,28 @@ cells:
         46-50: "#54A24B"
         51-55: "#EECA3B"
       resultVariable: chart_result_9
-      outputResult: false
+      outputResult: true
       displayType: CHART
-      displayTableConfig: null
+      displayTableConfig:
+        pageSize: 50
+        height: null
+        hideIcons: false
+        defaultColumnWidth: null
+        hideIndex: false
+        defaultSortColumn: null
+        defaultSortIndexColumn: null
+        defaultSortDirection: ASC
+        conditionalFormatting: null
+        calcs: null
+        filters: []
+        columnProperties: []
+        columnOrdering: null
+        customColumnOrdering: null
+        pinnedColumns: null
+        hiddenColumns: null
+        pinIndexColumns: false
+        showAggregations: false
+        columnAggregations: null
   - cellType: TEXT
     cellId: d512cce6-953d-4988-ba07-34151576f106 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -1739,12 +1984,12 @@ cells:
               children:
                 - type: lic
                   children:
-                    - text: There are more Males than Females buying stuff.
+                    - text: There are more Males than Females at each location.
             - type: li
               children:
                 - type: lic
                   children:
-                    - text: Although Location C has more number of buyers, Location B wins in the total sales amount.
+                    - text: Location C has more buyers, but Location B has more Total Sales.
             - type: li
               children:
                 - type: lic
@@ -1759,17 +2004,12 @@ cells:
               children:
                 - type: lic
                   children:
-                    - text: Products 1, 5, 8 are the most sold products (In terms of quantity and revenue).
+                    - text: Products 1, 5, 8 are the most sold products comprising of more than 70% sales at each location(In terms of quantity and revenue).
             - type: li
               children:
                 - type: lic
                   children:
                     - text: Product 5 and 8 have maximum total purchase amount even if they don't have the highest volume sold.
-            - type: li
-              children:
-                - type: lic
-                  children:
-                    - text: Total Buyers by Occupation and Total Purchase Amount ration is almost even.
   - cellType: TEXT
     cellId: 9c8a4875-8f6b-4ac1-8c69-b41afea9718f # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -1823,6 +2063,17 @@ appLayout:
                   height: null
                   showLabel: true
         - columns:
+            - start: 10
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 002fb1e3-fd53-429b-9eb2-296cb057c4b4
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
             - start: 0
               end: 120
               elements:
@@ -1861,18 +2112,7 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
-                  cellId: b7c3c8a2-3491-4577-a290-57afde6a3b88
-                  sharedFilterId: null
-                  height: 550
-                  showLabel: true
-        - columns:
-            - start: 0
-              end: 120
-              elements:
-                - showSource: false
-                  hideOutput: false
-                  type: CELL
-                  cellId: 20537c64-7813-4160-9eb8-2a4c592443f7
+                  cellId: 19ef0e84-21ee-4120-ab96-e2a1f2b3ab97
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -1883,7 +2123,7 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
-                  cellId: 19ef0e84-21ee-4120-ab96-e2a1f2b3ab97
+                  cellId: 20537c64-7813-4160-9eb8-2a4c592443f7
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -1916,7 +2156,7 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
-                  cellId: 84ebd3d8-244a-4b9d-b682-a4c6e732c01d
+                  cellId: 8bfb5312-3310-409f-8ce5-82438c126d79
                   sharedFilterId: null
                   height: null
                   showLabel: true
