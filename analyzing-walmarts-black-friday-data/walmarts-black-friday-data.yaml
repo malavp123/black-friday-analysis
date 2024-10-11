@@ -1,6 +1,6 @@
 schemaVersion: 3
 meta:
-  sourceVersionId: 6dd70caa-0513-46ea-bffd-bd0492b61ac4 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  sourceVersionId: f94e8b36-8e7a-42c7-9ca9-338904beaaa8 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
   description: null
   projectId: b752968d-f519-48a6-a935-5c666a12c206 # DO NOT CHANGE - Unique ID of the project from which this file was generated
   title: Analyzing Walmart's Black Friday Data
@@ -15,7 +15,7 @@ meta:
   publishedQueryCacheTimeout: null
   hexType: PROJECT
   allowExecutionReordering: true
-  prerunApp: false
+  prerunApp: true
   cachePublishedAppState: true
   refreshStalePublishedApp: false
   autoRerunApp: true
@@ -35,7 +35,13 @@ cells:
     cellLabel: null
     config:
       source: |-
-        select *, ROW_NUMBER() OVER(ORDER BY 1) AS PURCHASE_ID, case when Marital_Status = 0 then 'single' else 'married' end as dimension_marital_status, CAST(occupation AS TEXT) AS dimension_occupation
+        select 
+            *, 
+            ROW_NUMBER() OVER(ORDER BY 1) AS PURCHASE_ID, 
+            case when Marital_Status = 0 then 'single' else 'married' end as dimension_marital_status, 
+            CAST(occupation AS TEXT) AS dimension_occupation,
+            CAST(Product_Category AS TEXT) AS dimension_Product_Category
+            
         from "walmart_data.csv"
       dataFrameCell: true
       dataConnectionId: null
@@ -241,6 +247,13 @@ cells:
                   type: dataframe
                   dataType: number
                   aggregate: sum
+                  numberFormat:
+                    format: CURRENCY
+                    currency: USD
+                    columnType: NUMBER
+                    showSeparators: true
+                    numDecimalDigits: 2
+                    abbreviateLargeNumbers: true
                   dataFrameColumn: Purchase
                   colorsBySeriesValues: {}
                 opacity:
@@ -251,13 +264,14 @@ cells:
                 dataLabels:
                   angle: 0
                   position: outside-end
+                legendTitle: Total Purchase Amount
                 barWidth: 1
                 orientation: vertical
                 layout: grouped
             dataFrame: walmart_data
         settings:
           legend:
-            position: bottom
+            position: none
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
@@ -772,14 +786,14 @@ cells:
           - id: b561ae03-551e-4f17-9a65-15e8c312ef72
             xAxis:
               sort: ascending
-              type: number
+              type: string
               style:
                 grid:
                   style: solid
                 ticks: {}
                 labels: {}
               title: Product Categories
-              dataFrameColumn: Product_Category
+              dataFrameColumn: dimension_Product_Category
             series:
               - id: cb4fb836-0e8c-4cc1-8559-6e20274a2cb1
                 type: bar
@@ -812,7 +826,7 @@ cells:
                   style:
                     ticks: {}
                     labels: {}
-                  title: $ Amount (Sum)
+                  title: Total Purchase Amount ($USD)
                   aggregate: sum
                   numberFormat:
                     format: CURRENCY
@@ -878,15 +892,15 @@ cells:
         layers:
           - id: b561ae03-551e-4f17-9a65-15e8c312ef72
             xAxis:
-              sort: ascending
-              type: number
+              sort: descending
+              type: string
               style:
                 grid:
                   style: solid
                 ticks: {}
                 labels: {}
               title: Product Categories
-              dataFrameColumn: Product_Category
+              dataFrameColumn: dimension_Product_Category
             series:
               - id: cb4fb836-0e8c-4cc1-8559-6e20274a2cb1
                 type: bar
@@ -1073,7 +1087,7 @@ cells:
               - - 561aaa5d-850a-4a53-a8d0-bda2fb494ad7
         settings:
           legend:
-            position: top-right
+            position: right
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
@@ -1135,7 +1149,7 @@ cells:
             dataFrame: walmart_data
         settings:
           legend:
-            position: bottom
+            position: right
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
@@ -1315,20 +1329,17 @@ cells:
     cellLabel: null
     config:
       richText:
-        - type: h2
+        - type: h3
           children:
-            - text: Metrics by Gender, Cities and Age Group
-        - type: p
-          children:
-            - text: ""
+            - text: Data at a glance..
   - cellType: TEXT
     cellId: b87c3b66-e86e-4204-b448-9d28b0dd63bc # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
     config:
       richText:
-        - type: h2
+        - type: h3
           children:
-            - text: Metrics by Occupation and Product Categories
+            - text: " Relation  Gender, Age Groups and Total Buyers, Total Purchase Amount for each City Category"
   - cellType: TEXT
     cellId: 4da7947b-7b43-46b8-9b04-0bb201246683 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -1457,13 +1468,14 @@ cells:
                   value: 1
                 tooltip:
                   type: auto
+                legendTitle: Marital Status
                 barWidth: 1
                 orientation: vertical
                 layout: stacked
             dataFrame: walmart_data
         settings:
           legend:
-            position: bottom
+            position: right
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
@@ -1629,7 +1641,7 @@ cells:
             dataFrame: walmart_data
         settings:
           legend:
-            position: bottom
+            position: right
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
@@ -1720,7 +1732,7 @@ cells:
       richText:
         - type: p
           children:
-            - text: "Take Away: "
+            - text: "Key Take Aways: "
         - type: ol
           children:
             - type: li
@@ -1742,7 +1754,38 @@ cells:
               children:
                 - type: lic
                   children:
-                    - text: More than 60% of our users in the Age Group 26-35 are single
+                    - text: More than 60% of our users in the Age Group 26-35 are single.
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: Products 1, 5, 8 are the most sold products (In terms of quantity and revenue).
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: Product 5 and 8 have maximum total purchase amount even if they don't have the highest volume sold.
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: Total Buyers by Occupation and Total Purchase Amount ration is almost even.
+  - cellType: TEXT
+    cellId: 9c8a4875-8f6b-4ac1-8c69-b41afea9718f # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: h3
+          children:
+            - text: Breaking down product Quantities Purchased and Total Purchase amount by Product Categories.
+  - cellType: TEXT
+    cellId: 20537c64-7813-4160-9eb8-2a4c592443f7 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: h3
+          children:
+            - text: Deeper Look into Age Groups
 appLayout:
   visibleMetadataFields:
     - NAME
@@ -1764,7 +1807,7 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
-                  cellId: 0d9ac38b-5d9b-4510-a949-50d889104dc4
+                  cellId: eeef82dc-fe4d-4725-a427-1129c081c601
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -1775,7 +1818,7 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
-                  cellId: eeef82dc-fe4d-4725-a427-1129c081c601
+                  cellId: 0d9ac38b-5d9b-4510-a949-50d889104dc4
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -1829,7 +1872,29 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
+                  cellId: 20537c64-7813-4160-9eb8-2a4c592443f7
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
                   cellId: 19ef0e84-21ee-4120-ab96-e2a1f2b3ab97
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 9c8a4875-8f6b-4ac1-8c69-b41afea9718f
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -1863,28 +1928,6 @@ appLayout:
                   hideOutput: false
                   type: CELL
                   cellId: d512cce6-953d-4988-ba07-34151576f106
-                  sharedFilterId: null
-                  height: null
-                  showLabel: true
-        - columns:
-            - start: 0
-              end: 120
-              elements:
-                - showSource: false
-                  hideOutput: false
-                  type: CELL
-                  cellId: 4da7947b-7b43-46b8-9b04-0bb201246683
-                  sharedFilterId: null
-                  height: null
-                  showLabel: true
-        - columns:
-            - start: 0
-              end: 120
-              elements:
-                - showSource: false
-                  hideOutput: false
-                  type: CELL
-                  cellId: 9917f868-16ee-4093-a520-6f96ed1c7509
                   sharedFilterId: null
                   height: null
                   showLabel: true
