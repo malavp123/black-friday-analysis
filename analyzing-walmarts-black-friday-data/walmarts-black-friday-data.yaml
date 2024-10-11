@@ -1,6 +1,6 @@
 schemaVersion: 3
 meta:
-  sourceVersionId: 59a0f5a6-99a8-4884-827a-5dc046547425 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  sourceVersionId: 6dd70caa-0513-46ea-bffd-bd0492b61ac4 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
   description: null
   projectId: b752968d-f519-48a6-a935-5c666a12c206 # DO NOT CHANGE - Unique ID of the project from which this file was generated
   title: Analyzing Walmart's Black Friday Data
@@ -35,7 +35,7 @@ cells:
     cellLabel: null
     config:
       source: |-
-        select *, ROW_NUMBER() OVER(ORDER BY 1) AS PURCHASE_ID, case when Marital_Status = 0 then 'single' else 'married' end as str_marital_status
+        select *, ROW_NUMBER() OVER(ORDER BY 1) AS PURCHASE_ID, case when Marital_Status = 0 then 'single' else 'married' end as dimension_marital_status, CAST(occupation AS TEXT) AS dimension_occupation
         from "walmart_data.csv"
       dataFrameCell: true
       dataConnectionId: null
@@ -116,6 +116,16 @@ cells:
           - originalName: User_ID
             renameTo: null
             size: 96
+            wrapText: null
+            displayFormat: null
+          - originalName: dimension_marital_status
+            renameTo: null
+            size: 288
+            wrapText: null
+            displayFormat: null
+          - originalName: dimension_occupation
+            renameTo: null
+            size: 240
             wrapText: null
             displayFormat: null
           - originalName: row-index-0
@@ -431,9 +441,74 @@ cells:
           referencedColumnTypes: {}
         filters: []
         columnProperties:
+          - originalName: Age
+            renameTo: null
+            size: 72
+            wrapText: null
+            displayFormat: null
+          - originalName: City_Category
+            renameTo: null
+            size: 125
+            wrapText: null
+            displayFormat: null
+          - originalName: Gender
+            renameTo: null
+            size: 92
+            wrapText: null
+            displayFormat: null
+          - originalName: Marital_Status
+            renameTo: null
+            size: 130
+            wrapText: null
+            displayFormat: null
+          - originalName: Occupation
+            renameTo: null
+            size: 113
+            wrapText: null
+            displayFormat: null
           - originalName: PURCHASE_ID
             renameTo: null
             size: 132
+            wrapText: null
+            displayFormat: null
+          - originalName: Product_Category
+            renameTo: null
+            size: 148
+            wrapText: null
+            displayFormat: null
+          - originalName: Product_ID
+            renameTo: null
+            size: 114
+            wrapText: null
+            displayFormat: null
+          - originalName: Purchase
+            renameTo: null
+            size: 102
+            wrapText: null
+            displayFormat: null
+          - originalName: Stay_In_Current_City_Years
+            renameTo: null
+            size: 201
+            wrapText: null
+            displayFormat: null
+          - originalName: User_ID
+            renameTo: null
+            size: 96
+            wrapText: null
+            displayFormat: null
+          - originalName: dimension_marital_status
+            renameTo: null
+            size: 288
+            wrapText: null
+            displayFormat: null
+          - originalName: dimension_occupation
+            renameTo: null
+            size: 240
+            wrapText: null
+            displayFormat: null
+          - originalName: row-index-0
+            renameTo: null
+            size: 46
             wrapText: null
             displayFormat: null
           - originalName: str_marital_status
@@ -919,22 +994,16 @@ cells:
         layers:
           - id: a154633e-574d-4b27-b12d-72ddf629c02f
             xAxis:
-              type: number
+              type: string
               style:
                 grid:
                   style: solid
                 ticks: {}
                 labels: {}
-              numberFormat:
-                format: NUMBER
-                currency: USD
-                columnType: NUMBER
-                showSeparators: true
-                numDecimalDigits: 1
-                abbreviateLargeNumbers: false
-              dataFrameColumn: Occupation
+              dataFrameColumn: dimension_occupation
             series:
               - id: 57277468-0c03-46e7-8d85-803c449de603
+                name: No. of Buyers
                 type: bar
                 axis:
                   type: number
@@ -943,7 +1012,8 @@ cells:
                       style: solid
                     ticks: {}
                     labels: {}
-                  aggregate: count
+                  title: No. of Buyers
+                  aggregate: distinct
                   numberFormat:
                     format: NUMBER
                     currency: USD
@@ -952,7 +1022,7 @@ cells:
                     numDecimalDigits: 2
                     abbreviateLargeNumbers: true
                 dataFrameColumns:
-                  - _HEX_COUNT_STAR_ARG_
+                  - User_ID
                 colorOrder: ascending
                 color:
                   type: static
@@ -966,13 +1036,22 @@ cells:
                 orientation: vertical
                 layout: stacked
               - id: 561aaa5d-850a-4a53-a8d0-bda2fb494ad7
+                name: Total Purchase Amount ($USD)
                 type: line
                 axis:
                   type: number
                   style:
                     ticks: {}
                     labels: {}
+                  title: Total Purchase Amount ($USD)
                   aggregate: sum
+                  numberFormat:
+                    format: CURRENCY
+                    currency: USD
+                    columnType: NUMBER
+                    showSeparators: true
+                    numDecimalDigits: 2
+                    abbreviateLargeNumbers: true
                 dataFrameColumns:
                   - Purchase
                 colorOrder: ascending
@@ -981,18 +1060,20 @@ cells:
                   color: "#F58518"
                 opacity:
                   type: static
-                  value: 1
+                  value: 0.75
                 tooltip:
                   type: auto
                 point: false
+                interpolate: linear
                 stroke: solid
+                width: 2
             dataFrame: walmart_data
             seriesGroups:
               - - 57277468-0c03-46e7-8d85-803c449de603
               - - 561aaa5d-850a-4a53-a8d0-bda2fb494ad7
         settings:
           legend:
-            position: right
+            position: top-right
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
@@ -1294,13 +1375,11 @@ cells:
                   aggregate: sum
                 dataFrameColumns:
                   - Purchase
-                colorDataFrameColumn: str_marital_status
+                colorDataFrameColumn: dimension_marital_status
                 colorOrder: ascending
                 color:
                   type: series
-                  colorsBySeriesValues:
-                    single: "#F58518"
-                    married: "#4C78A8"
+                  colorsBySeriesValues: {}
                 opacity:
                   type: static
                   value: 1
@@ -1321,6 +1400,170 @@ cells:
         M: "#F58518"
         single: "#F58518"
         married: "#4C78A8"
+      resultVariable: chart_result
+      outputResult: false
+      displayType: CHART
+      displayTableConfig: null
+  - cellType: CHARTV2
+    cellId: 19ef0e84-21ee-4120-ab96-e2a1f2b3ab97 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      height: null
+      chartSpec:
+        type: layered
+        facet:
+          facetHorizontal:
+            type: string
+            dataFrameColumn: City_Category
+        layers:
+          - id: 85e39d83-d7c5-49aa-b875-437cba7e383c
+            xAxis:
+              type: string
+              style:
+                grid:
+                  style: solid
+                ticks: {}
+                labels: {}
+              dataFrameColumn: Age
+            series:
+              - id: 3749772f-fd82-4ddd-8575-5f4d20e34411
+                type: bar
+                axis:
+                  type: number
+                  style:
+                    grid:
+                      style: solid
+                    ticks: {}
+                    labels: {}
+                  title: Total Purchase
+                  aggregate: sum
+                  numberFormat:
+                    format: CURRENCY
+                    currency: USD
+                    columnType: NUMBER
+                    showSeparators: true
+                    numDecimalDigits: 2
+                    abbreviateLargeNumbers: true
+                dataFrameColumns:
+                  - Purchase
+                colorDataFrameColumn: dimension_marital_status
+                colorOrder: ascending
+                color:
+                  type: series
+                  dataType: number
+                  colorsBySeriesValues: {}
+                opacity:
+                  type: static
+                  value: 1
+                tooltip:
+                  type: auto
+                barWidth: 1
+                orientation: vertical
+                layout: stacked
+            dataFrame: walmart_data
+        settings:
+          legend:
+            position: bottom
+          tooltip: true
+          selectionEnabled: false
+      chartSelection: {}
+      colorMappings:
+        F: "#4C78A8"
+        M: "#F58518"
+        55+: "#B279A2"
+        0-17: "#4C78A8"
+        18-25: "#F58518"
+        26-35: "#E45756"
+        36-45: "#72B7B2"
+        46-50: "#54A24B"
+        51-55: "#EECA3B"
+        single: "#F58518"
+        married: "#4C78A8"
+      resultVariable: chart_result_12
+      outputResult: false
+      displayType: CHART
+      displayTableConfig: null
+  - cellType: CHARTV2
+    cellId: d853e23e-5bf6-4da4-9517-63ea7d6fa98a # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      height: null
+      chartSpec:
+        type: layered
+        layers:
+          - id: 91895395-4467-4852-acfe-6868de07dafb
+            xAxis:
+              type: string
+              style:
+                grid:
+                  style: solid
+                ticks: {}
+                labels: {}
+              title: Age
+              dataFrameColumn: Age
+            series:
+              - id: 85003653-6b1f-4e04-b16a-9d6b02fb8eb2
+                type: bar
+                axis:
+                  type: number
+                  style:
+                    grid:
+                      style: solid
+                    ticks: {}
+                    labels: {}
+                  title: Number of Users
+                  aggregate: distinct
+                dataFrameColumns:
+                  - User_ID
+                colorDataFrameColumn: dimension_occupation
+                colorOrder: ascending
+                color:
+                  type: series
+                  colorsBySeriesValues: {}
+                opacity:
+                  type: static
+                  value: 1
+                tooltip:
+                  type: auto
+                barWidth: 1
+                orientation: vertical
+                layout: stacked100
+            dataFrame: walmart_data
+        settings:
+          legend:
+            position: right
+          tooltip: true
+          selectionEnabled: false
+      chartSelection: {}
+      colorMappings:
+        "0": "#4C78A8"
+        "1": "#F58518"
+        "2": "#E45756"
+        "3": "#72B7B2"
+        "4": "#54A24B"
+        "5": "#EECA3B"
+        "6": "#B279A2"
+        "7": "#FF9DA6"
+        "8": "#9D755D"
+        "9": "#BAB0AC"
+        "10": "#4C78A8"
+        "11": "#F58518"
+        "12": "#E45756"
+        "13": "#72B7B2"
+        "14": "#54A24B"
+        "15": "#EECA3B"
+        "16": "#B279A2"
+        "17": "#FF9DA6"
+        "18": "#9D755D"
+        "19": "#BAB0AC"
+        "20": "#4C78A8"
+        55+: "#B279A2"
+        0-17: "#4C78A8"
+        18-25: "#F58518"
+        26-35: "#E45756"
+        36-45: "#72B7B2"
+        46-50: "#54A24B"
+        51-55: "#EECA3B"
       resultVariable: chart_result
       outputResult: false
       displayType: CHART
@@ -1359,6 +1602,13 @@ cells:
                     labels: {}
                   title: Total Purchase
                   aggregate: sum
+                  numberFormat:
+                    format: CURRENCY
+                    currency: USD
+                    columnType: NUMBER
+                    showSeparators: true
+                    numDecimalDigits: 2
+                    abbreviateLargeNumbers: true
                 dataFrameColumns:
                   - Purchase
                 colorDataFrameColumn: Age
@@ -1492,7 +1742,7 @@ cells:
               children:
                 - type: lic
                   children:
-                    - text: More than 50% of our users in the Age Group 26-35 are single
+                    - text: More than 60% of our users in the Age Group 26-35 are single
 appLayout:
   visibleMetadataFields:
     - NAME
@@ -1579,18 +1829,7 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
-                  cellId: 7b9f7df9-b3f6-4b39-966d-de5e89b57cea
-                  sharedFilterId: null
-                  height: null
-                  showLabel: true
-        - columns:
-            - start: 0
-              end: 120
-              elements:
-                - showSource: false
-                  hideOutput: false
-                  type: CELL
-                  cellId: d512cce6-953d-4988-ba07-34151576f106
+                  cellId: 19ef0e84-21ee-4120-ab96-e2a1f2b3ab97
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -1613,6 +1852,17 @@ appLayout:
                   hideOutput: false
                   type: CELL
                   cellId: 84ebd3d8-244a-4b9d-b682-a4c6e732c01d
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: d512cce6-953d-4988-ba07-34151576f106
                   sharedFilterId: null
                   height: null
                   showLabel: true
