@@ -1,6 +1,6 @@
 # black-friday-sales-analysis
 Contains code files and other related information for analyzing publicly available Walmart dataset 
 
-Testing Hex Embeddable link
+Testing Embeding Image
 
-https://app.hex.tech/ef5521ce-da87-47e0-84e6-a27e1240f5be/app/b752968d-f519-48a6-a935-5c666a12c206/latest?embedded=true&embeddedStaticCellId=8bfb5312-3310-409f-8ce5-82438c126d79
+<img width="1142" alt="Screenshot 2024-10-11 at 4 44 19 PM" src="https://github.com/user-attachments/assets/e6a0ff01-2c04-4709-9f90-c35abb6a3682">
