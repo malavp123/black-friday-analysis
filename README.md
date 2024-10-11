@@ -1,4 +1,3 @@
-<img width="1161" alt="Screenshot 2024-10-11 at 4 46 25 PM" src="https://github.com/user-attachments/assets/2c27ecb5-74dd-48e0-91ad-0d5232a2faad"># black-friday-sales-analysis
 
 Analyzing Walmart's Black Friday Sales Data. Explore the visual by clicking on this [link](https://app.hex.tech/ef5521ce-da87-47e0-84e6-a27e1240f5be/app/b752968d-f519-48a6-a935-5c666a12c206/latest)
 
