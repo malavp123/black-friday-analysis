@@ -4,8 +4,7 @@ Analyzing Walmart's Black Friday Sales Data. Explore the visual by clicking on t
 
 Testing Embeding Image
 
-<img width="1135" alt="Screenshot 2024-10-11 at 4 51 53 PM" src="https://github.com/user-attachments/assets/f1c4fa63-d6b5-4565-bc41-23a0e23e75b4">
+<img width="1182" alt="Screenshot 2024-10-13 at 1 43 00 PM" src="https://github.com/user-attachments/assets/53d3ba84-831e-401b-8c71-240450da5051">
 
-<img width="1142" alt="Screenshot 2024-10-11 at 4 44 19 PM" src="https://github.com/user-attachments/assets/e6a0ff01-2c04-4709-9f90-c35abb6a3682">
 
 <img width="1161" alt="Screenshot 2024-10-11 at 4 46 25 PM" src="https://github.com/user-attachments/assets/0ce95a08-9f34-4610-8864-eca898f8dccd">
