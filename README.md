@@ -1,6 +1,6 @@
 # Walmart Black Friday Sales Analysis
 
-Analyzing Walmart's Black Friday Sales Data. Explore the visual by clicking on this [link](https://app.hex.tech/ef5521ce-da87-47e0-84e6-a27e1240f5be/app/b752968d-f519-48a6-a935-5c666a12c206/latest)
+Analyzing Walmart's Black Friday Sales Data. Explore the interactive visual on Hex by clicking on this [link](https://app.hex.tech/ef5521ce-da87-47e0-84e6-a27e1240f5be/app/b752968d-f519-48a6-a935-5c666a12c206/latest)
 
 Testing Embeding Image
 
