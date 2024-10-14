@@ -9,7 +9,7 @@ Analyzing Walmart's Black Friday Sales Data. Explore the visual by clicking on t
 4. Purchase: Total Purchase Amount
 
 
-<img width="1161" alt="Screenshot 2024-10-14 at 4 24 07 PM" src="https://github.com/user-attachments/assets/3c291bd5-21a4-46b1-bad8-f6499705e4ae">
+<img width="1146" alt="Screenshot 2024-10-14 at 4 40 03 PM" src="https://github.com/user-attachments/assets/e6128d89-c64c-4580-ac07-59e8777b5bfc">
 <img width="1145" alt="Screenshot 2024-10-14 at 4 24 27 PM" src="https://github.com/user-attachments/assets/37f4ae8b-da53-4ffc-ae29-e313b9587b1b">
 <img width="1154" alt="Screenshot 2024-10-14 at 4 31 06 PM" src="https://github.com/user-attachments/assets/982fdafa-3c42-4800-80f1-4a9884847195">
 
