@@ -2,24 +2,42 @@
 
 Analyzing Walmart's Black Friday Sales Data. Explore the visual by clicking on this [link](https://app.hex.tech/ef5521ce-da87-47e0-84e6-a27e1240f5be/app/b752968d-f519-48a6-a935-5c666a12c206/latest)
 
+## North Star Metrics
+1. Product: Total Quantity Sold, Product Category
+2. Buyers: Number of Buyers, Age Group, Gender, Marital Status, Years lived in the city
+3. City:  Coded Locations (A, B, C)
+4. Purchase: Total Purchase Amount
+
+
 <img width="1182" alt="Screenshot 2024-10-13 at 1 43 00 PM" src="https://github.com/user-attachments/assets/53d3ba84-831e-401b-8c71-240450da5051">
 
 <img width="1158" alt="Screenshot 2024-10-13 at 4 57 47 PM" src="https://github.com/user-attachments/assets/5e918690-21c1-4dd9-9311-8fe12216a21a">
 
 ## Major Takeaways
 
-### Buyers
-1. There are more Males than Females at each location.
-2. Males, Age Group 26-35, from location B have contributed the highest to total sales.
-3. More than 60% of our users in the Age Group 26-35 are single.
+1. There are about 75% Males buyers at each location.
+2. Location C has the highest number of buyers, but Location B generates the most total sales.
+3. Male buyers aged 26-35 from Location B contribute the most to total sales.
+4. Products 1, 5, and 8 are the top sellers, accounting for over 70% of sales in both quantity and revenue across all locations.
+5. Despite high sales volume, Products 5 and 8 have a lower total purchase amount.
+6. Location A has a younger demographic as compared to Location C, while location B has the more evenly distributed population Age. 
+7. Location C sees higher sales of Product Type 1, which contributes less to the total purchase amount.
+8. More than 60% of our users in the Age Group 26-35 are single.
 
-### Locations
-1. Location C has more buyers, but Location B has more Total Sales.
+## Recommendations/ Next Steps:
 
-### Products
-1. Products 1, 5, 8 are the most sold products comprising of more than 70% sales at each location (In terms of quantity and revenue).
-2. Product 5 and 8 have maximum total purchase amount even if they don't have the highest volume sold.
+### Products:
+1. Categories 1, 5, and 8 consistently outperform others across all locations in both quantity and purchase amount. We should focus on promoting these products at underperforming locations to boost revenue.
+2. Categories 5 and 8 generate nearly half of the total sales despite being sold in similar quantities as category 1. This suggests an opportunity to revisit the pricing strategy for category 1 to maximize its profitability.3
+3. Review stock levels for underperforming products (9, 12, 13, 17, 19, and 20) to minimize unsold inventory and reduce losses. Investigate whether competition or other factors are affecting their sales.
 
-## Suggestions
+### Buyers:
+1. Analyze buyer behavior at Location B, where fewer customers generate the highest total sales. Engaging these buyers with personalized offers could foster loyalty and create a steady revenue stream.
+2. Our sale attracted Male Buyers the most across all the 3 locations (More than 75%), especially ages 26-45. Should we introduce products or discounts targeted to these buyers?
+3. About 35% of the population consists of people who have recently moved to the city (within the last year), and they have contributed the most to total sales. Identifying their specific needs and introducing relevant products could unlock further revenue opportunities.
 
-1. 
+
+
+
+
+
