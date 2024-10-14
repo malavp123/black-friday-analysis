@@ -1,9 +1,9 @@
 schemaVersion: 3
 meta:
-  sourceVersionId: 8984603b-09a3-44f6-ad5e-156e76852f14 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  sourceVersionId: 94920650-e65c-4ed2-b17c-c8d89815d69d # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
   description: null
   projectId: b752968d-f519-48a6-a935-5c666a12c206 # DO NOT CHANGE - Unique ID of the project from which this file was generated
-  title: Analyzing Walmart's Black Friday Data
+  title: Analyzing Walmart's Black Friday Sales
   timezone: null
   appTheme: SYS_PREF
   codeLanguage: PYTHON
@@ -321,7 +321,7 @@ cells:
                       style: solid
                     ticks: {}
                     labels: {}
-                  title: Total Purchase Amount ($ USD)
+                  title: Total Sales Amount ($ USD)
                   aggregate: sum
                   numberFormat:
                     format: CURRENCY
@@ -335,6 +335,7 @@ cells:
                 colorOrder: ascending
                 color:
                   type: dataframe
+                  scheme: blues
                   dataType: number
                   aggregate: sum
                   numberFormat:
@@ -896,6 +897,13 @@ cells:
                     labels: {}
                   title: Total Purchase Amount ($USD)
                   aggregate: sum
+                  numberFormat:
+                    format: CURRENCY
+                    currency: USD
+                    columnType: NUMBER
+                    showSeparators: true
+                    numDecimalDigits: 2
+                    abbreviateLargeNumbers: true
                 dataFrameColumns:
                   - Purchase
                 colorOrder: ascending
@@ -939,7 +947,7 @@ cells:
               - - 11d5940b-e131-4bfd-93fb-00bab271e88d
         settings:
           legend:
-            position: right
+            position: bottom
           tooltip: true
           selectionEnabled: false
       chartSelection: {}
@@ -1427,7 +1435,24 @@ cells:
       richText:
         - type: h3
           children:
-            - text: " Relation  Gender, Age Groups and Total Buyers, Total Purchase Amount for each City Category"
+            - text: " Diving deeper into Buyers Demographics by Cities "
+        - type: ol
+          children:
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: Graph 1 show the total number of buyers for each gender by the cities.
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: Graph 2 explores how much users of each gender in cities contributes to the total purchase amount on that day.
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: Graph 3 dives deeper into the age group and marital status of our buyers.
   - cellType: TEXT
     cellId: 4da7947b-7b43-46b8-9b04-0bb201246683 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -1644,7 +1669,7 @@ cells:
                       style: solid
                     ticks: {}
                     labels: {}
-                  title: Distinct count of Users
+                  title: Total Sales Amount ($ USD)
                   aggregate: sum
                 dataFrameColumns:
                   - Purchase
@@ -1848,7 +1873,7 @@ cells:
       displayTableConfig: null
   - cellType: CHARTV2
     cellId: 8bfb5312-3310-409f-8ce5-82438c126d79 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
-    cellLabel: null
+    cellLabel: Total Purchase by Product Category for Cities
     config:
       height: null
       chartSpec:
@@ -1862,7 +1887,8 @@ cells:
                 grid:
                   style: solid
                 ticks: {}
-                labels: {}
+                labels:
+                  angle: 0
               title: City
               dataFrameColumn: City_Category
             series:
@@ -1873,6 +1899,7 @@ cells:
                   style:
                     grid:
                       style: solid
+                    zero: true
                     ticks: {}
                     labels: {}
                   title: Total Purchase
@@ -1909,6 +1936,10 @@ cells:
                   value: 1
                 tooltip:
                   type: auto
+                dataLabels:
+                  angle: 0
+                  position: outside-end
+                legendTitle: Product Category
                 barWidth: 1
                 orientation: vertical
                 layout: stacked100
@@ -2004,7 +2035,7 @@ cells:
               children:
                 - type: lic
                   children:
-                    - text: Products 1, 5, 8 are the most sold products comprising of more than 70% sales at each location(In terms of quantity and revenue).
+                    - text: Products 1, 5, 8 are the most sold products comprising of more than 70% sales at each location (In terms of quantity and revenue).
             - type: li
               children:
                 - type: lic
@@ -2017,7 +2048,7 @@ cells:
       richText:
         - type: h3
           children:
-            - text: Breaking down product Quantities Purchased and Total Purchase amount by Product Categories.
+            - text: Exploring the most sold products by Quantities Purchased and Total Purchase.
   - cellType: TEXT
     cellId: 20537c64-7813-4160-9eb8-2a4c592443f7 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -2026,6 +2057,67 @@ cells:
         - type: h3
           children:
             - text: Deeper Look into Age Groups
+  - cellType: TEXT
+    cellId: 4d1dce45-f16e-4a92-aee3-1e7da66e852d # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: blockquote
+          children:
+            - text: Each row in the table represents a unique product purchase by a single buyer, including details about both the buyer and the product.
+  - cellType: TEXT
+    cellId: 9de6cf12-d6cb-4691-a697-6574ac9aeaa7 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: h3
+          children:
+            - text: North Star Metrics and Dimensions
+  - cellType: TEXT
+    cellId: 8a75c167-087d-414c-a4bc-d7ef2d2c83d2 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: ul
+          children:
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "Product: Total Quantity Sold, Product Category"
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "Users: Total Number of Distinct Users, Age Group , Gender, "
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "City:  Coded Locations (A, B, C)"
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "Purchase: Total Purchase Amount "
+        - type: p
+          children:
+            - text: ""
+  - cellType: TEXT
+    cellId: aed4ad13-88a1-489e-925f-96df95e1ea68 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: paragraph
+          children:
+            - text: "Recommendations:"
+        - type: ol
+          children:
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: Some product/product categories significantly outperform others in
 appLayout:
   visibleMetadataFields:
     - NAME
@@ -2058,12 +2150,23 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
+                  cellId: 4d1dce45-f16e-4a92-aee3-1e7da66e852d
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
                   cellId: 0d9ac38b-5d9b-4510-a949-50d889104dc4
                   sharedFilterId: null
                   height: null
                   showLabel: true
         - columns:
-            - start: 10
+            - start: 5
               end: 120
               elements:
                 - showSource: false
@@ -2080,7 +2183,18 @@ appLayout:
                 - showSource: false
                   hideOutput: false
                   type: CELL
-                  cellId: b87c3b66-e86e-4204-b448-9d28b0dd63bc
+                  cellId: 9de6cf12-d6cb-4691-a697-6574ac9aeaa7
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 8a75c167-087d-414c-a4bc-d7ef2d2c83d2
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -2093,7 +2207,7 @@ appLayout:
                   type: CELL
                   cellId: c3e7cc20-2357-4cf5-a61c-e04c5eda6cb6
                   sharedFilterId: null
-                  height: null
+                  height: 350
                   showLabel: true
             - start: 60
               end: 120
@@ -2103,7 +2217,7 @@ appLayout:
                   type: CELL
                   cellId: 697cd25f-68cb-432a-8bfa-1352b24b1af6
                   sharedFilterId: null
-                  height: 550
+                  height: 350
                   showLabel: true
         - columns:
             - start: 0
@@ -2114,18 +2228,7 @@ appLayout:
                   type: CELL
                   cellId: 19ef0e84-21ee-4120-ab96-e2a1f2b3ab97
                   sharedFilterId: null
-                  height: null
-                  showLabel: true
-        - columns:
-            - start: 0
-              end: 120
-              elements:
-                - showSource: false
-                  hideOutput: false
-                  type: CELL
-                  cellId: 20537c64-7813-4160-9eb8-2a4c592443f7
-                  sharedFilterId: null
-                  height: null
+                  height: 350
                   showLabel: true
         - columns:
             - start: 0
@@ -2140,17 +2243,16 @@ appLayout:
                   showLabel: true
         - columns:
             - start: 0
-              end: 120
+              end: 65
               elements:
                 - showSource: false
                   hideOutput: false
                   type: CELL
                   cellId: 080b8f83-b5aa-426f-a7c0-60ce2f0659cd
                   sharedFilterId: null
-                  height: null
+                  height: 500
                   showLabel: true
-        - columns:
-            - start: 0
+            - start: 65
               end: 120
               elements:
                 - showSource: false
@@ -2158,7 +2260,7 @@ appLayout:
                   type: CELL
                   cellId: 8bfb5312-3310-409f-8ce5-82438c126d79
                   sharedFilterId: null
-                  height: null
+                  height: 550
                   showLabel: true
         - columns:
             - start: 0
@@ -2168,6 +2270,17 @@ appLayout:
                   hideOutput: false
                   type: CELL
                   cellId: d512cce6-953d-4988-ba07-34151576f106
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: aed4ad13-88a1-489e-925f-96df95e1ea68
                   sharedFilterId: null
                   height: null
                   showLabel: true
