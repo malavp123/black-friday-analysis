@@ -11,7 +11,7 @@ Analyzing Walmart's Black Friday Sales Data. Explore the visual by clicking on t
 
 <img width="1161" alt="Screenshot 2024-10-14 at 4 24 07 PM" src="https://github.com/user-attachments/assets/3c291bd5-21a4-46b1-bad8-f6499705e4ae">
 <img width="1145" alt="Screenshot 2024-10-14 at 4 24 27 PM" src="https://github.com/user-attachments/assets/37f4ae8b-da53-4ffc-ae29-e313b9587b1b">
-<img width="1158" alt="Screenshot 2024-10-13 at 4 57 47 PM" src="https://github.com/user-attachments/assets/665b4b07-c8ce-4540-9348-566c40085c9c">
+<img width="1154" alt="Screenshot 2024-10-14 at 4 31 06 PM" src="https://github.com/user-attachments/assets/982fdafa-3c42-4800-80f1-4a9884847195">
 
 ## Major Takeaways
 
