@@ -1,6 +1,6 @@
 schemaVersion: 3
 meta:
-  sourceVersionId: f05d7edc-4345-41fb-86c7-ed50d4b9adae # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  sourceVersionId: 68636e3f-76cd-4594-9c64-fec41e25f15c # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
   description: null
   projectId: b752968d-f519-48a6-a935-5c666a12c206 # DO NOT CHANGE - Unique ID of the project from which this file was generated
   title: Analyzing Walmart's Black Friday Sales
@@ -216,36 +216,6 @@ cells:
             - code: true
               text: Marital_Status
             - text: ":   Identifier of each buyer's marital status. (0  - Single, 1 - Married)"
-        - type: p
-          children:
-            - code: true
-              text: Product_Category
-            - text: ":  Identifier of each product's category."
-        - type: p
-          children:
-            - code: true
-              text: Purchase
-            - text: ":  Cost of each product."
-        - type: p
-          children:
-            - code: true
-              text: PURCHASE_ID
-            - text: ":  Unique Identifier of each row. (Calculated field)"
-        - type: p
-          children:
-            - code: true
-              text: dimension_marital_status
-            - text: ":  Same as Marital Status field, converted to dimension from metric(Calculated field)"
-        - type: p
-          children:
-            - code: true
-              text: dimension_occupation
-            - text: ":  Same as Marital Status field, converted to dimension from metric (Calculated field)"
-        - type: p
-          children:
-            - code: true
-              text: dimension_Product_Category
-            - text: ":  Same as Product Category, converted to dimension from metric (Calculated field)"
   - cellType: TEXT
     cellId: d2f7ae12-d1e7-4de9-9bef-a73051a93d02 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -343,7 +313,9 @@ cells:
                     numDecimalDigits: 2
                     abbreviateLargeNumbers: true
                   dataFrameColumn: Purchase
-                  colorsBySeriesValues: {}
+                  colorsBySeriesValues:
+                    F: "#FF9DA6"
+                    M: "#4C78A8"
                 opacity:
                   type: static
                   value: 1
@@ -864,7 +836,7 @@ cells:
       useNativeDates: true
   - cellType: CHARTV2
     cellId: 080b8f83-b5aa-426f-a7c0-60ce2f0659cd # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
-    cellLabel: Product Qty. Sold and Sum of Purchase Amount by Product Categories
+    cellLabel: null
     config:
       height: null
       chartSpec:
@@ -1945,6 +1917,7 @@ cells:
                   style: solid
                 ticks: {}
                 labels: {}
+              title: No. of Years in Current city
               dataFrameColumn: Stay_In_Current_City_Years
             series:
               - id: 9ee9b091-69a8-43f6-8cb1-b0ea1412e959
@@ -2030,7 +2003,7 @@ cells:
       displayTableConfig: null
   - cellType: CHARTV2
     cellId: 8bfb5312-3310-409f-8ce5-82438c126d79 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
-    cellLabel: Total Purchase by Product Category for Cities
+    cellLabel: null
     config:
       height: null
       chartSpec:
@@ -2207,7 +2180,7 @@ cells:
               children:
                 - type: lic
                   children:
-                    - text: More than 60% of our users in the Age Group 26-35 are single.
+                    - text: More than 60% of our buyers in the Age Group 26-35 are single.
   - cellType: TEXT
     cellId: 9c8a4875-8f6b-4ac1-8c69-b41afea9718f # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -2231,7 +2204,7 @@ cells:
       richText:
         - type: blockquote
           children:
-            - text: Each row in the table represents a unique product purchase by a single buyer, including details about both the buyer and the product.
+            - text: Each row in the table represents a unique product purchase from a single buyer.
   - cellType: TEXT
     cellId: 9de6cf12-d6cb-4691-a697-6574ac9aeaa7 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -2256,7 +2229,7 @@ cells:
               children:
                 - type: lic
                   children:
-                    - text: "Users: Total Number of Distinct Users, Age Group , Gender, Marital Status"
+                    - text: "Buyers: Total Number of Distinct Buyers, Age Group , Gender, Marital Status"
             - type: li
               children:
                 - type: lic
@@ -2321,6 +2294,41 @@ cells:
         - type: p
           children:
             - text: ""
+  - cellType: TEXT
+    cellId: 6c3f839c-60e3-442a-a9a5-79b9ba8229f9 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: p
+          children:
+            - code: true
+              text: Product_Category
+            - text: ":  Identifier of each product's category."
+        - type: p
+          children:
+            - code: true
+              text: Purchase
+            - text: ":  Cost of each product."
+        - type: p
+          children:
+            - code: true
+              text: PURCHASE_ID
+            - text: ":  Unique Identifier of each row. (Calculated field)"
+        - type: p
+          children:
+            - code: true
+              text: dimension_marital_status
+            - text: ":  Same as Marital Status field, converted to dimension from metric(Calculated field)"
+        - type: p
+          children:
+            - code: true
+              text: dimension_occupation
+            - text: ":  Same as Marital Status field, converted to dimension from metric (Calculated field)"
+        - type: p
+          children:
+            - code: true
+              text: dimension_Product_Category
+            - text: ":  Same as Product Category, converted to dimension from metric (Calculated field)"
 appLayout:
   visibleMetadataFields:
     - NAME
@@ -2369,13 +2377,23 @@ appLayout:
                   height: null
                   showLabel: true
         - columns:
-            - start: 5
-              end: 120
+            - start: 0
+              end: 60
               elements:
                 - showSource: false
                   hideOutput: false
                   type: CELL
                   cellId: 002fb1e3-fd53-429b-9eb2-296cb057c4b4
+                  sharedFilterId: null
+                  height: 300
+                  showLabel: true
+            - start: 60
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 6c3f839c-60e3-442a-a9a5-79b9ba8229f9
                   sharedFilterId: null
                   height: null
                   showLabel: true
@@ -2452,17 +2470,6 @@ appLayout:
                   cellId: d3f5c86a-01e6-4649-ad67-c0b7d4fc37dc
                   sharedFilterId: null
                   height: 550
-                  showLabel: true
-        - columns:
-            - start: 0
-              end: 120
-              elements:
-                - showSource: false
-                  hideOutput: false
-                  type: CELL
-                  cellId: 9c8a4875-8f6b-4ac1-8c69-b41afea9718f
-                  sharedFilterId: null
-                  height: null
                   showLabel: true
         - columns:
             - start: 0
